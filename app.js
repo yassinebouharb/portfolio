@@ -27,12 +27,12 @@ const smokeTexture = new TextureLoader().load("smoke.png");
 
 const l = new THREE.CubeTextureLoader();
 const texture = l.load([
-    'posx.png',  // Right
-    'negx.png',   // Left
-    'posy.png',    // Top
-    'negy.png', // Bottom
-    'posz.png',  // Front
-    'negz.png'    // Back
+    'assets/posx.png',  // Right
+    'assets/negx.png',   // Left
+    'assets/posy.png',    // Top
+    'assets/negy.png', // Bottom
+    'assets/posz.png',  // Front
+    'assets/negz.png'    // Back
 ]);
 
 scene.background = texture;
@@ -51,7 +51,7 @@ const planets = new Map();
 
 // Add planets to the Map
 planets.set('mars', {
-    texture: 'pink.jpg',
+    texture: 'assets/pink.jpg',
     position: { x: 100, y: -250, z: -50 },
     radius: 20,
     info: `
@@ -65,7 +65,7 @@ planets.set('mars', {
         `
 });
 planets.set('earth', {
-    texture: 'earth.jpg',
+    texture: 'assets/earth.jpg',
     position: { x: 200, y: 0, z: -150 },
     radius: 15,
     info:'\n' +
@@ -81,7 +81,7 @@ planets.set('earth', {
 });
 
 planets.set('neptune', {
-    texture: 'jupyter.jpg',
+    texture: 'assets/jupyter.jpg',
     position: { x: -30, y: 170, z: -250 },
     radius: 15,
     info:"  <strong>Diploma in IT Engineering</strong><br>\n" +
@@ -90,7 +90,7 @@ planets.set('neptune', {
         "    <strong>Sept 2018 – May 2023</strong>"
 });
 planets.set('jupyter', {
-    texture: 'jupyter2.jpg',
+    texture: 'assets/jupyter2.jpg',
     position: { x: -300, y: 150, z: 170 },
     radius: 15,
     info:
@@ -110,7 +110,7 @@ planets.set('jupyter', {
         "    </ul>\n"
 });
 planets.set('mercure', {
-    texture: 'mercure.jpg',
+    texture: 'assets/mercure.jpg',
     position: { x: 300, y: 250, z: -350 },
     radius: 15,
     info:
@@ -167,7 +167,7 @@ function createPlanet(key, planetData) {
 planets.forEach((planetData, key) => {
     createPlanet(key, planetData);
 });
-const ringTexture = new THREE.TextureLoader().load('JupiterRings.png'); // Replace with actual URL or local path
+const ringTexture = new THREE.TextureLoader().load('assets/JupiterRings.png'); // Replace with actual URL or local path
 const ringGeometry = new THREE.TorusGeometry(32, 0.5, 16, 100);
 const ringMaterial = new THREE.MeshStandardMaterial({
     map: ringTexture,
@@ -183,7 +183,7 @@ let planet, planetMixer;
 function loadPlanet() {
     const loader = new GLTFLoader();
     loader.load(
-        'earth-cartoon.glb', // Update with planet model path
+        'assets/earth-cartoon.glb', // Update with planet model path
         (gltf) => {
             planet = gltf.scene;
             planet.scale.set(11, 11, 11); // Adjust size as needed
@@ -217,7 +217,7 @@ function loadPlanet() {
 }
 loadPlanet();
 
-function createCometHead(radius = 2, textureURL = 'planet-texture.jpg') {
+function createCometHead(radius = 2, textureURL = 'assets/planet-texture.jpg') {
     // Create the sphere geometry for the comet head
     const cometGeometry = new THREE.SphereGeometry(radius, 16, 16);
 
@@ -237,12 +237,12 @@ function createCometHead(radius = 2, textureURL = 'planet-texture.jpg') {
 }
 
 const skillModels = {
-    'python': { url: 'python.glb', scale: 10 },
-    'java': { url: 'java.glb', scale: 10 },
-    'html': { url: 'html.glb', scale: 0.2 },
-    'css': { url: 'css.glb', scale: 0.2 },
-    'docker': { url: 'docker.glb', scale: 15 },
-    'c': { url: 'c.glb', scale: 1 }
+    'python': { url: 'assets/python.glb', scale: 10 },
+    'java': { url: 'assets/java.glb', scale: 10 },
+    'html': { url: 'assets/html.glb', scale: 0.2 },
+    'css': { url: 'assets/css.glb', scale: 0.2 },
+    'docker': { url: 'assets/docker.glb', scale: 15 },
+    'c': { url: 'assets/c.glb', scale: 1 }
 };
 
 const skillPositions = {
@@ -371,7 +371,7 @@ let cursorPosition = -5; // Initial distance from (0, 0, 0)
 function loadCursor() {
     const loader = new GLTFLoader();
     loader.load(
-        'cursor.glb', // Update with the actual path to the cursor model
+        'assets/cursor.glb', // Update with the actual path to the cursor model
         (gltf) => {
             cursor = gltf.scene;
             cursor.scale.set(20, 20,20); // Adjust the cursor size
@@ -436,7 +436,7 @@ const texts = [
 
 // Load a font
 const loa = new FontLoader();
-loa.load('font1.json', function (font) {
+loa.load('assets/font1.json', function (font) {
 
     // Create text geometry
     texts.forEach(text => {
@@ -571,7 +571,7 @@ window.addEventListener('mousemove', onMouseMove, false);
 
 let graduation;
 const loar = new GLTFLoader();
-loar.load('graduation_hat.glb', function (gltf) {
+loar.load('assets/graduation_hat.glb', function (gltf) {
     graduation = gltf.scene;
     graduation.scale.set(3, 3, 3); // Adjust size
     graduation.position.set(-20, 183, -250);
@@ -587,7 +587,7 @@ graduation.rotation.z-=(Math.PI/6)
 
 let spaceship;
 const loader = new GLTFLoader();
-loader.load('space_rocket.glb', function (gltf) {
+loader.load('assets/space_rocket.glb', function (gltf) {
     spaceship = gltf.scene;
     spaceship.scale.set(3, 3, 3); // Adjust size
     spaceship.position.set(0, 0, 10);
