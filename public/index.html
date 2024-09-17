@@ -6,6 +6,45 @@
     <style>
         body { margin: 0; overflow: hidden; }
         canvas { display: block; }
+
+        #loading-screen {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-size: 24px;
+            z-index: 9999;
+        }
+
+        #progress-bar {
+            width: 50%;
+            height: 20px;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        /* Style the progress bar itself */
+        #progress-bar::-webkit-progress-bar {
+            background-color: #444; /* Background color */
+            border-radius: 5px;     /* Rounded corners */
+        }
+
+        /* Style the value (red fill for progress) */
+        #progress-bar::-webkit-progress-value {
+            background-color: red; /* Red fill color */
+            border-radius: 5px;    /* Rounded corners */
+        }
+
+        #progress-bar::-moz-progress-bar {
+            background-color: red; /* For Firefox */
+            border-radius: 5px;
+        }
+
         #info {
             position: fixed;
             top: 50%;
@@ -214,6 +253,11 @@
 
 </head>
 <body>
+<div id="loading-screen">
+    Loading... <br>
+    <progress id="progress-bar" value="90" max="100"></progress>
+</div>
+
 <div id="info"></div>
 <button id="delete-button">
     space 🚀

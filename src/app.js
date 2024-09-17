@@ -21,8 +21,27 @@ const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerH
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
+
 const earthTexture = new TextureLoader().load("earth.jpg")
 const smokeTexture = new TextureLoader().load("smoke.png");
+
+const progressBar = document.getElementById('progress-bar');
+
+const loadingManager = new THREE.LoadingManager(
+    // Loaded callback
+    () => {
+        const loadingScreen = document.getElementById('loading-screen');
+        loadingScreen.style.display = 'none';
+    },
+
+    // Progress callback
+    (itemUrl, itemsLoaded, itemsTotal) => {
+        const progress = (itemsLoaded / itemsTotal) * 100;
+        progressBar.value = progress;
+    }
+);
+// Load assets using loaders
+
 
 
 const l = new THREE.CubeTextureLoader();
@@ -622,8 +641,7 @@ function onMouseMove(event) {
     if (intersects.length > 0 && intersects[0].object.info!=null)  {
         const intersectedObject = intersects[0].object;
         infoDiv.style.display = 'block';
-        infoDiv.style.left = `${event.clientX}px`;
-        infoDiv.style.top = `${event.clientY}px`;
+
         infoDiv.innerHTML = `
         ${intersectedObject.info || ' '}`;
     } else {
@@ -752,6 +770,9 @@ const animate = () => {
 
     updateSkillOrbits();
    updateExhaustFlame();
+    const textureLoader = new THREE.TextureLoader(loadingManager);
+    textureLoader.load('assets/earth-cartoon'); // Add your texture path
+
 }
 animate();
 
@@ -764,3 +785,5 @@ window.addEventListener('resize', () => {
 
 // Start animation loop
 moveSpaceship();
+const loadingScreen = document.getElementById('loading-screen');
+loadingScreen.style.display = 'none';
