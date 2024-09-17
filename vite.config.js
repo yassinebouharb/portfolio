@@ -1,9 +1,12 @@
-// vite.config.js
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-    base: '/portfolio/',
     build: {
-        outDir: 'dist'
-    }// Replace <repository-name> with your repository name
+        rollupOptions: {
+            input: {
+                main: 'index.html',
+            },
+        },
+    },
+    publicDir: 'public', // Ensures assets in public/ are copied to build
 });
